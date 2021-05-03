@@ -72,7 +72,7 @@ const CreateSquare = async () => {
     const textureView = gpu.swapChain.getCurrentTexture().createView();
     const renderPass = commandEncoder.beginRenderPass({
         colorAttachments: [{
-            attachment: textureView,
+            view: textureView,
             loadValue: { r: 0.5, g: 0.5, b: 0.8, a: 1.0 }, //background color
             storeOp: 'store'
         }]
