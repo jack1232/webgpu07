@@ -1,26 +1,26 @@
 import { InitGPU, CreateGPUBuffer } from './helper';
-import { Shaders } from './shaders';
+import { Shaders } from './shaders'; 
 
 const CreateSquare = async () => {
     const gpu = await InitGPU();
     const device = gpu.device;
 
     const vertexData = new Float32Array([
-       -0.5, -0.5,    
-        0.5, -0.5,    
-       -0.5,  0.5,   
-       -0.5,  0.5,    
-        0.5, -0.5,    
-        0.5,  0.5,   
+       -0.5, -0.5,  // vertex a
+        0.5, -0.5,  // vertex b
+       -0.5,  0.5,  // vertex d
+       -0.5,  0.5,  // vertex d
+        0.5, -0.5,  // vertex b
+        0.5,  0.5,  // vertex c
    ]);
 
    const colorData = new Float32Array([
-        1, 0, 0,
-        0, 1, 0,
-        1, 1, 0,
-        1, 1, 0,
-        0, 1, 0,
-        0, 0, 1
+        1, 0, 0,    // vertex a: red
+        0, 1, 0,    // vertex b: green
+        1, 1, 0,    // vertex d: yellow
+        1, 1, 0,    // vertex d: yellow
+        0, 1, 0,    // vertex b: green
+        0, 0, 1     // vertex c: blue
     ]);
 
     const vertexBuffer = CreateGPUBuffer(device, vertexData);

@@ -10,6 +10,7 @@ export const CreateGPUBuffer = (device:GPUDevice, data:Float32Array,
     return buffer;
 }
 
+
 export const InitGPU = async () => {
     const checkgpu = CheckWebGPU();
     if(checkgpu.includes('Your current browser does not support WebGPU!')){
