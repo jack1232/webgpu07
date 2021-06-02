@@ -1,5 +1,5 @@
 # Step-by-Step WebGPU Graphics Programming (7) 
-## Create Triangle with Different Vertex Colors 
+## Create Square using GPU Buffer 
 
 This is the source code for the 7th part of a series YouTube videos on step-by-step WebGPU graphics programming.
 
