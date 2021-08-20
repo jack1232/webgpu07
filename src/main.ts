@@ -59,7 +59,7 @@ const CreateSquare = async () => {
             entryPoint: "main",
             targets: [
                 {
-                    format: gpu.swapChainFormat as GPUTextureFormat
+                    format: gpu.format as GPUTextureFormat
                 }
             ]
         },
@@ -69,7 +69,7 @@ const CreateSquare = async () => {
     });
 
     const commandEncoder = device.createCommandEncoder();
-    const textureView = gpu.swapChain.getCurrentTexture().createView();
+    const textureView = gpu.context.getCurrentTexture().createView();
     const renderPass = commandEncoder.beginRenderPass({
         colorAttachments: [{
             view: textureView,
