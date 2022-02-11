@@ -1,5 +1,5 @@
 import { InitGPU, CreateGPUBuffer } from './helper';
-import { Shaders } from './shaders'; 
+import shader from './shader.wgsl'; 
 
 const CreateSquare = async () => {
     const gpu = await InitGPU();
@@ -26,13 +26,12 @@ const CreateSquare = async () => {
     const vertexBuffer = CreateGPUBuffer(device, vertexData);
     const colorBuffer = CreateGPUBuffer(device, colorData);
     
-    const shader = Shaders();
     const pipeline = device.createRenderPipeline({
         vertex: {
             module: device.createShaderModule({                    
-                code: shader.vertex
+                code: shader
             }),
-            entryPoint: "main",
+            entryPoint: "vs_main",
             buffers:[
                 {
                     arrayStride: 8,
@@ -54,9 +53,9 @@ const CreateSquare = async () => {
         },
         fragment: {
             module: device.createShaderModule({                    
-                code: shader.fragment
+                code: shader
             }),
-            entryPoint: "main",
+            entryPoint: "fs_main",
             targets: [
                 {
                     format: gpu.format as GPUTextureFormat
@@ -73,7 +72,9 @@ const CreateSquare = async () => {
     const renderPass = commandEncoder.beginRenderPass({
         colorAttachments: [{
             view: textureView,
-            loadValue: { r: 0.5, g: 0.5, b: 0.8, a: 1.0 }, //background color
+            clearValue: {r: 0.2, g: 0.247, b: 0.314, a: 1.0}, //background color
+            loadValue: { r: 0.2, g: 0.247, b: 0.314, a: 1.0 }, 
+            loadOp: 'clear',
             storeOp: 'store'
         }]
     });
@@ -81,7 +82,7 @@ const CreateSquare = async () => {
     renderPass.setVertexBuffer(0, vertexBuffer);
     renderPass.setVertexBuffer(1, colorBuffer);
     renderPass.draw(6);
-    renderPass.endPass();
+    renderPass.end();
 
     device.queue.submit([commandEncoder.finish()]);
 }
