@@ -1,5 +1,6 @@
 import { InitGPU, CreateGPUBuffer } from './helper';
 import shader from './shader.wgsl'; 
+import "./site.css";
 
 const CreateSquare = async () => {
     const gpu = await InitGPU();
@@ -89,6 +90,8 @@ const CreateSquare = async () => {
 
 CreateSquare();
 
-
+window.addEventListener('resize', function(){
+    CreateSquare();
+});
 
 
