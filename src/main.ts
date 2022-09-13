@@ -28,6 +28,7 @@ const CreateSquare = async () => {
     const colorBuffer = CreateGPUBuffer(device, colorData);
     
     const pipeline = device.createRenderPipeline({
+        layout:'auto',
         vertex: {
             module: device.createShaderModule({                    
                 code: shader
@@ -74,7 +75,7 @@ const CreateSquare = async () => {
         colorAttachments: [{
             view: textureView,
             clearValue: {r: 0.2, g: 0.247, b: 0.314, a: 1.0}, //background color
-            loadValue: { r: 0.2, g: 0.247, b: 0.314, a: 1.0 }, 
+            //clearValue: { r: 0.2, g: 0.247, b: 0.314, a: 1.0 }, 
             loadOp: 'clear',
             storeOp: 'store'
         }]

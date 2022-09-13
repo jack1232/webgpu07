@@ -22,16 +22,18 @@ export const InitGPU = async () => {
     const context = canvas.getContext('webgpu') as unknown as GPUCanvasContext;
 
     const devicePixelRatio = window.devicePixelRatio || 1;
-    const size = [
+    /*const size = [
         canvas.clientWidth * devicePixelRatio,
         canvas.clientHeight * devicePixelRatio,
-    ];
-    const format = context.getPreferredFormat(adapter!);
+    ];*/
+    //const format = context.getPreferredFormat(adapter!);
+    const format = navigator.gpu.getPreferredCanvasFormat();
 
     context.configure({
         device: device,
         format: format,
-        size: size
+        //size: size
+        alphaMode:'opaque'
     });
     return{ device, canvas, format, context };
 };
